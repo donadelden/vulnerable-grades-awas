@@ -8,14 +8,14 @@ A vulnerable website to manage grades.
 
 #### Instructions to run with Docker
 
-- install [Docker](https://docs.docker.com/install/) and Docker-compose (on Linux: `sudo apt install -y docker.io docker-composer`)
+- install [Docker](https://docs.docker.com/install/) and Docker-compose (on Linux: `sudo apt install -y docker.io docker-compose`)
 - manage Docker as a non-root user (only Linux based systems) (https://docs.docker.com/install/linux/linux-postinstall/)
   - `sudo groupadd docker`
   - `sudo usermod -aG docker $USER`  
   - restart your machine (log out is not enough)
   - verify that you can run docker commands without sudo: `docker info`
 - clone this repository
-- from the folder of the repository `docker-composer up -d`. The first execution is slow (it has to pull the docker images). To stop the containers `docker-composer stop`.
+- from the folder of the repository `docker-compose up -d`. The first execution is slow (it has to pull the docker images). To stop the containers `docker-compose stop`.
 - Nginx will be available on `localhost:80` and PostgreSQL on `localhost:5432`
 - credentials for PostgreSQL are in `.env` file.
 
