@@ -15,10 +15,11 @@ A vulnerable website to manage grades.
   - restart your machine (log out is not enough)
   - verify that you can run docker commands without sudo: `docker info`
 - clone this repository
-- from the folder of the repository `docker-compose up -d`. The first execution is slow (it has to pull the docker images). To stop the containers `docker-compose stop`.
+- from the folder of the repository `docker-compose up -d`. The first execution is slow (it has to pull the docker images). To stop the containers `docker-compose down`.
 - Nginx will be available on `localhost:80` and PostgreSQL on `localhost:5432`
 - credentials for PostgreSQL are in `.env` file.
 
 #### Useful tips
-- If you mess up with containers (e.g. you have conflicts because there is some container running) you can use `docker kill $(docker ps -q)`
+- If you mess up with containers (e.g. you have conflicts because there is some container running) you can use `docker kill $(docker ps -q) && docker volume prune`
 - [This could be useful in the next days, maybe] If this warning comes out _"WARNING: Error loading config file: /home/user/.docker/config.json -stat /home/user/.docker/config.json: permission denied"_, do `sudo chown "$USER":"$USER" /home/"$USER"/.docker -R` and `sudo chmod g+rwx "$HOME/.docker" -R`
+- To directly access the db, with containers up, use `docker exec -it vulnerable-grades-awas_docker-db_1  /bin/bash` to get a shell inside the container and `psql --host=docker-db --username=admin --dbname=db-grades` to open Postgres. 
