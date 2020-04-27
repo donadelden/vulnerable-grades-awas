@@ -9,12 +9,16 @@ networks:
 services:
   # define the name of our service
   # corresponds to the "--name" parameter
-  docker-php-cli:
+  docker-nginx:
     # define the directory where the build should happened,
     # i.e. where the Dockerfile of the service is located
     # all paths are relative to the location of docker-compose.yml
     build:
-      context: ./.docker/php-cli
+      context: ./.docker/nginx
+    # defines the port mapping
+    # corresponds to the "-p" flag
+    ports:
+      - "80:80"
     # reserve a tty - otherwise the container shuts down immediately
     # corresponds to the "-i" flag
     tty: true
@@ -22,22 +26,9 @@ services:
     # corresponds to the "-v" option
     volumes:
       - ./src:/var/www
+      - ./.docker/nginx/conf.d:/etc/nginx/conf.d
     # connect to the network
     # corresponds to the "--network" option
-    networks:
-      - web-network
-
-  docker-nginx:
-    build:
-      context: ./.docker/nginx
-    # defines the port mapping
-    # corresponds to the "-p" flag
-    ports:
-      - "80:80"
-    tty: true
-    volumes:
-      - ./src:/var/www
-      - ./.docker/nginx/conf.d:/etc/nginx/conf.d
     networks:
       - web-network
 
@@ -61,3 +52,5 @@ services:
           - 5432:5432
       volumes:
           - ./.docker/postgres/:/docker-entrypoint-initdb.d/
+      networks:
+          - web-network
