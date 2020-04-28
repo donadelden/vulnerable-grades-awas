@@ -16,8 +16,8 @@ CREATE TABLE grades (
 
 -- Insert some data...
 INSERT INTO users(username, password, name, surname, admin) VALUES
-  ('denis', 'awas2020', 'denis', 'donadel', FALSE),
-	('carina', 'awas2020', 'carina', 'deaconu', FALSE),
+  ('denis', 'awas2020', 'Denis', 'Donadel', FALSE),
+	('carina', 'awas2020', 'Carina', 'Deaconu', FALSE),
 	('professor', 'awas2020', 'prof', 'surname', TRUE),
   ('user1', 'awas2020', 'name1', 'surname1', FALSE),
   ('user2', 'awas2020', 'name2', 'surname2', FALSE),
