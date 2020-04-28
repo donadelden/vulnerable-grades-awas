@@ -10,7 +10,9 @@
     include "index.php";
   }
   $conn = pg_connect("host=docker-db dbname=db-grades user=admin password=awas2020" );
-  $query = "SELECT * FROM users WHERE username ='$user' AND password='$password';";
+  // with password before username it can't be possible to use a simple injection
+  // like user="denis'--" password="any" to login
+  $query = "SELECT * FROM users WHERE password='$password' AND username ='$user';";
   $result = pg_query($conn, $query);
   //todo: verify this stuff for errors...
   $error = pg_result_error($result);
@@ -18,20 +20,29 @@
   if(pg_num_rows($result)!=1){
     echo"<html><body>";
     echo"<p align=\"center\">Your username and/or password is incorrect! <a href=\"index.php\">Retry</a></p>";
-    // todo: remove this error stuff or almost hidden it
-    echo"<p>'$error'</p>";
+    echo"<p>$error</p>";
     echo"</body></html>";
   } else {
-    // todo: check if admin
-    setcookie("test:ok");
-    //header("Location:pg_inic.php");
-    echo"<html><body>";
-    echo"<p align=\"center\">Welcome, '$user'!</p>";
+    $row = pg_fetch_row($result);
+    //check if admin
+    if($row[4]=='t'){
+      //setcookie("test:ok"); //do we want to set some cookies?
+      // admin page
+      echo"<html><body>";
+      echo"<p align=\"center\">Welcome, $row[0]!</p>";
+      echo"<p align=\"center\">This is the ADMIN page!</p>";
+      //include admin.php
+      echo"</body></html>";
+    } else {
+      // standard user page
+      echo"<html><body>";
+      echo"<p align=\"center\">Welcome, $row[0]!</p>";
+      echo"<p align=\"center\">This is the USER page!</p>";
+      //include user.php
+      echo"</body></html>";
+    }
     // debug:
-    //$row = pg_fetch_row($result);
     //echo "$row[0] $row[1] $row[2] $row[3] $row[4]";
-    echo"</body></html>";
-
   }
    pg_close($conn);
 ?>
