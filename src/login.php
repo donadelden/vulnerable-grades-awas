@@ -17,7 +17,11 @@
   //todo: verify this stuff for errors...
   $error = pg_result_error($result);
   // check if there are some results
-  if(pg_num_rows($result)!=1){
+  // if we set !=1 we eliminate the possibility to inject:
+  // user="any" password="any' or 1=1;--"
+  // to retrieve all the users and so print login as the first one
+  // also, with password="any' or 1=1 and admin=TRUE;--" you can login as admin
+  if(pg_num_rows($result)==0){
     echo"<html><body>";
     echo"<p align=\"center\">Your username and/or password is incorrect! <a href=\"index.php\">Retry</a></p>";
     echo"<p>$error</p>";
