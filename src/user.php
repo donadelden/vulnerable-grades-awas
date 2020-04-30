@@ -11,4 +11,5 @@
 	} else {
 		echo"<p align=\"center\">You don't have any grades to show.</p>";
 	}
+	echo "<a align=\"center\" href=\"index.php\">Logout</a>";
 ?>
