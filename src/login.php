@@ -32,10 +32,7 @@
     if($row[4]=='t'){
       //setcookie("test:ok"); //do we want to set some cookies?
       // admin page
-      echo"<html><body>";
-      echo"<p align=\"center\">Welcome, $row[0]!</p>";
-      echo"<p align=\"center\">This is the ADMIN page!</p>";
-      //include admin.php
+      include "admin.php";
       echo"</body></html>";
     } else {
       // standard user page
