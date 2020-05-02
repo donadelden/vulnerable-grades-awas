@@ -38,7 +38,7 @@
       echo"<html><body>";
       echo"<p align=\"center\">Welcome, $row[0]!</p>";
       echo"<p align=\"center\">This is the USER page!</p>";
-      //include user.php
+      include "user.php";
       echo"</body></html>";
     }
     // debug:
