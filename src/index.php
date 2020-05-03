@@ -5,6 +5,6 @@
            <label>Password</label><br/>
            <input name="password" type="password" id="password" /><br/><br/>
 
-           <input type="submit" name="Login" value="LOGIN" /> 
+           <input type="submit" name="Login" value="LOGIN" />
 
 </form>

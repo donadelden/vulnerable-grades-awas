@@ -1,6 +1,9 @@
 <?php
   // start and empty session
-  //session start();
+  // session_start();
+
+  // set validity time for cookies
+  $validity_time = 72000; //two hours
   // get user and password
   $user = $_POST['user'];
   $password = $_POST['password'];
@@ -14,8 +17,6 @@
   // like user="denis'--" password="any" to login
   $query = "SELECT * FROM users WHERE password='$password' AND username ='$user';";
   $result = pg_query($conn, $query);
-  //todo: verify this stuff for errors...
-  $error = pg_result_error($result);
   // check if there are some results
   // if we set !=1 we eliminate the possibility to inject:
   // user="any" password="any' or 1=1;--"
@@ -28,21 +29,15 @@
     echo"</body></html>";
   } else {
     $row = pg_fetch_row($result);
+    // use as session cookie the md5 of the username
+    setcookie('LOGIN', md5($user), time()+$validity_time);
     //check if admin
     if($row[4]=='t'){
-      //setcookie("test:ok"); //do we want to set some cookies?
       // admin page
-      include "admin.php";
+      header("location: /admin.php");
     } else {
-      // standard user page
-      echo"<html><body>";
-      echo"<p align=\"center\">Welcome, $row[0]!</p>";
-      echo"<p align=\"center\">This is the USER page!</p>";
-      include "user.php";
-      echo"</body></html>";
+      header("location: /user.php");
     }
-    // debug:
-    //echo "$row[0] $row[1] $row[2] $row[3] $row[4]";
   }
   pg_close($conn);
 ?>
