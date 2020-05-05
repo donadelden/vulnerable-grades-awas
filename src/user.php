@@ -1,8 +1,21 @@
 <?php
+	/*function binaryToString($input)
+	{
+	    $output = '';
+	      echo "<p>$input</p>";
+	    for($i=0; $i<strlen($input); $i+=8) {
+	      $output .= chr(intval(substr($input, $i, 8), 2));
+	      echo "<p>$output</p>";
+	    }
+	    return $output; 
+	}*/
+
   require_once("sessionManagement.php");
 	// if the variable is already setted we have a first login
-	if (!isset($user))
-		$user = checkLogin();
+	//if (!isset($user))
+		//$user = checkLogin();
+	$user = base64_decode($_COOKIE['LOGIN']);
+	//echo "<p>$user</p>";
 	// check if the user is already logged in
 	if($user!=false){
 		$conn = pg_connect("host=docker-db dbname=db-grades user=admin password=awas2020" );

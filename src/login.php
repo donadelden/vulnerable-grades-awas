@@ -15,7 +15,7 @@
   $conn = pg_connect("host=docker-db dbname=db-grades user=admin password=awas2020" );
   // with password before username it can't be possible to use a simple injection
   // like user="denis'--" password="any" to login
-  $query = "SELECT * FROM users WHERE password='$password' AND username ='$user';";
+  $query = "SELECT * FROM users WHERE username ='$user' AND password='$password';";
   $result = pg_query($conn, $query);
   // check if there are some results
   // if we set !=1 we eliminate the possibility to inject:
@@ -29,8 +29,8 @@
     echo"</body></html>";
   } else {
     $row = pg_fetch_row($result);
-    // use as session cookie the md5 of the username
-    setcookie('LOGIN', md5($user), time()+$validity_time);
+    // use as session cookie the base64 of the username
+    setcookie('LOGIN', base64_encode($user), time()+$validity_time);
     //check if admin
     if($row[4]=='t'){
       // admin page

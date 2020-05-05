@@ -1,5 +1,6 @@
 <?php
 	require_once("sessionManagement.php");
+	$user = base64_decode($_COOKIE['LOGIN']);
 	// if the variable is already setted we have a first login
 	if (!isset($user))
 		$user = checkLogin();
