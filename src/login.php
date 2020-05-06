@@ -15,7 +15,8 @@
   $conn = pg_connect("host=docker-db dbname=db-grades user=admin password=awas2020" );
   // with password before username it can't be possible to use a simple injection
   // like user="denis'--" password="any" to login
-  $query = "SELECT * FROM users WHERE username ='$user' AND password='$password';";
+  $enc_pass = md5($password);
+  $query = "SELECT * FROM users WHERE username ='$user' AND password='$enc_pass';";
   $result = pg_query($conn, $query);
   // check if there are some results
   // if we set !=1 we eliminate the possibility to inject:

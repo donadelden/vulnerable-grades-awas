@@ -16,12 +16,12 @@ CREATE TABLE grades (
 
 -- Insert some data...
 INSERT INTO users(username, password, name, surname, admin) VALUES
-  ('denis', 'awas2020', 'Denis', 'Donadel', FALSE),
-	('carina', 'awas2020', 'Carina', 'Deaconu', FALSE),
-	('professor', 'awas2020', 'prof', 'surname', TRUE),
-  ('user1', 'awas2020', 'name1', 'surname1', FALSE),
-  ('user2', 'awas2020', 'name2', 'surname2', FALSE),
-  ('user3', 'awas2020', 'name3', 'surname3', FALSE);
+  ('denis', MD5('awas2020'), 'Denis', 'Donadel', FALSE),
+	('carina', MD5('awas2020'), 'Carina', 'Deaconu', FALSE),
+	('professor', MD5('awas2020'), 'prof', 'surname', TRUE),
+  ('user1', MD5('awas2020'), 'name1', 'surname1', FALSE),
+  ('user2', MD5('awas2020'), 'name2', 'surname2', FALSE),
+  ('user3', MD5('awas2020'), 'name3', 'surname3', FALSE);
 
 INSERT INTO grades(username, subject, grade) VALUES
   ('denis', 'awas', 29),
