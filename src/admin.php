@@ -1,5 +1,6 @@
 <?php
 	require_once("sessionManagement.php");
+	echo "<title>Vulnerable grades</title>";
 	$user = base64_decode($_COOKIE['LOGIN']);
 	// if the variable is already setted we have a first login
 	if (!isset($user))
@@ -31,6 +32,6 @@
 			echo"<p align=\"center\">Your session is expired. Please login again.</p>";
 		else
 			echo"<p align=\"center\">Your don't have the right to see this page.</p>";
-		include "index.php";
+		echo "<a href=\"index.php\"> Login </a>";
 	}
 ?>

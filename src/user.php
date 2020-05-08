@@ -1,16 +1,6 @@
 <?php
-	/*function binaryToString($input)
-	{
-	    $output = '';
-	      echo "<p>$input</p>";
-	    for($i=0; $i<strlen($input); $i+=8) {
-	      $output .= chr(intval(substr($input, $i, 8), 2));
-	      echo "<p>$output</p>";
-	    }
-	    return $output; 
-	}*/
-
-  require_once("sessionManagement.php");
+	require_once("sessionManagement.php");
+	echo "<title>Vulnerable grades</title>";
 	// if the variable is already setted we have a first login
 	//if (!isset($user))
 		//$user = checkLogin();
@@ -36,7 +26,7 @@
 		pg_close($conn);
 	} else { // if the user is NOT logged in
 		echo"<p align=\"center\">Your session is expired. Please login again.</p>";
-		include "index.php";
+		echo "<a href=\"index.php\"> Login </a>";
 	}
 
 ?>

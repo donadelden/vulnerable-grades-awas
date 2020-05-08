@@ -1,3 +1,4 @@
+<title>Vulnerable grades</title>
 <form action="login.php" method="POST" id="formLogin">
 
            <label>User</label><br/>

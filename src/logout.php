@@ -2,5 +2,5 @@
   // expire login cookies
   setcookie('LOGIN', "", time()-1);
   echo "<p align=\"center\"> Goodbye!</p>";
-  include "index.php";
+  echo "<a href=\"index.php\"> Login </a>";
 ?>

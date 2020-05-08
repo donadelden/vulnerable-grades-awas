@@ -1,7 +1,6 @@
 <?php
   // start and empty session
   // session_start();
-
   // set validity time for cookies
   $validity_time = 72000; //two hours
   // get user and password
@@ -25,6 +24,7 @@
   // also, with password="any' or 1=1 and admin=TRUE;--" you can login as admin
   if(pg_num_rows($result)==0){
     echo"<html><body>";
+    echo "<title>Vulnerable grades</title>";
     echo"<p align=\"center\">Your username and/or password is incorrect! <a href=\"index.php\">Retry</a></p>";
     echo"</body></html>";
   } else if(pg_num_rows($result)==1){
