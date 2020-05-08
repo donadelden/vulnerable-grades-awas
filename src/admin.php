@@ -12,6 +12,7 @@
 		echo"<p align=\"center\">This is the ADMIN page!</p>";
 		echo"<p align=\"center\">Here are all the grades:</p>";
 		echo "<nav><a href=\"addGrade.php\">Add grade</a></nav>";
+		// get all the grades of all users
 		$conn = pg_connect("host=docker-db dbname=db-grades user=admin password=awas2020");
 		$query = "SELECT exam_date, subject, grade, name, surname, g.username AS usr FROM grades g, users u WHERE g.username = u.username";
 		$result = pg_query($conn, $query);

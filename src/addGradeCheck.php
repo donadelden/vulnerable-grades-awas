@@ -4,12 +4,12 @@
 	$subject = $_POST['subject'];
 	$grade = $_POST['grade'];
 
-	if((!$user) || (!$subject) || (!$grade)){
+	if ((!$user) || (!$subject) || (!$grade)) {
 	  echo "<script type='text/javascript'>alert('Some fields are missing');</script>";
 	  include "addGrade.php";
 	} else {
 		$conn = pg_connect("host=docker-db dbname=db-grades user=admin password=awas2020");
-		// date is optional
+		// date is optional, default is current date
 		if ($date) {
 			$query = "INSERT INTO grades(exam_date, username, subject, grade) VALUES ($1, $2, $3, $4)";
 			$result = pg_query_params($conn, $query, array($date, $user, $subject, $grade));
