@@ -21,7 +21,7 @@
     echo "<title>Vulnerable grades</title>";
     echo"<p align=\"center\">Your username and/or password is incorrect! <a href=\"index.php\">Retry</a></p>";
     echo"</body></html>";
-  } else if (pg_num_rows($result) == 1) {
+  } else { 
     $row = pg_fetch_row($result);
     // use as session cookie the base64 of the username
     setcookie('LOGIN', base64_encode($user), time() + $validity_time);
@@ -33,15 +33,6 @@
       // user page
       header("location: /user.php");
     }
-  } else {
-    echo"<html><body>";
-    echo"<p align=\"center\">A problem occurs! <a href=\"index.php\">Retry</a></p>";
-    echo"<!--";
-    while ($row = pg_fetch_row($result)) {
-      echo"$row[0], $row[1], $row[2], $row[3], $row[4]<br>";
-    }
-    echo"--!>";
-    echo"</body></html>";
   }
   pg_close($conn);
 ?>
