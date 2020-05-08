@@ -11,7 +11,7 @@
 		echo"<p align=\"center\">Welcome!</p>";
 		echo"<p align=\"center\">This is the ADMIN page!</p>";
 		echo"<p align=\"center\">Here are all the grades:</p>";
-		echo "<nav><a href=\"addGrade.php\">Add grade</a></nav>";
+		echo"<p align=\"center\"><a href=\"addGrade.php\">Add grade</a></p>";
 		// get all the grades of all users
 		$conn = pg_connect("host=docker-db dbname=db-grades user=admin password=awas2020");
 		$query = "SELECT exam_date, subject, grade, name, surname, g.username AS usr FROM grades g, users u WHERE g.username = u.username";
@@ -25,14 +25,14 @@
 		} else {
 			echo"<p align=\"center\">No entries available.</p>";
 		}
-		echo "<a href=\"logout.php\"> Logout </a>";
+		echo "<p align=\"center\"> <a href=\"logout.php\"> Logout </a></p>";
 	    echo"</body></html>";
 		pg_close($conn);
 	} else { // if the user is NOT logged in or is not admin
 		if($user==false)
 			echo"<p align=\"center\">Your session is expired. Please login again.</p>";
 		else
-			echo"<p align=\"center\">Your don't have the right to see this page.</p>";
-		echo "<a href=\"index.php\"> Login </a>";
+			echo"<p align=\"center\">Your don't have the right to see this page.";
+			echo"<a href=\"index.php\"> Login </a></p>";
 	}
 ?>

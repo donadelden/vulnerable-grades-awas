@@ -19,10 +19,10 @@
 		} else {
 			echo"<p align=\"center\">You don't have any grades to show.</p>";
 		}
-		echo "<a align=\"center\" href=\"logout.php\">Logout</a>";
+		echo "<p align=\"center\"><a href=\"logout.php\">Logout</a></p>";
 		pg_close($conn);
 	} else {
 		echo"<p align=\"center\">Your session is expired. Please login again.</p>";
-		echo "<a href=\"index.php\"> Login </a>";
+		echo "<p align=\"center\"> <a href=\"index.php\"> Login </a></p>";
 	}
 ?>
