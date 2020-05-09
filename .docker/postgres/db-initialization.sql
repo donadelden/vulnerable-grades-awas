@@ -12,7 +12,7 @@ CREATE TABLE grades (
   subject VARCHAR NOT NULL,
   grade INT,
   passed BOOLEAN,
-  PRIMARY KEY (exam_date, username)
+  PRIMARY KEY (exam_date, username, subject)
 );
 
 -- Insert some data...

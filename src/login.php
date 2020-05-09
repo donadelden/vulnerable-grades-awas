@@ -6,7 +6,7 @@
   $password = $_POST['password'];
 
   if ((!$user) || (!$password)) {
-    echo "Please, insert both username and passowrd! <br /><br />";
+    echo "<p align=\"center\">Please, insert both username and passowrd! <br><br></p>";
     include "index.php";
   }
 
@@ -21,7 +21,7 @@
     echo "<title>Vulnerable grades</title>";
     echo"<p align=\"center\">Your username and/or password is incorrect! <a href=\"index.php\">Retry</a></p>";
     echo"</body></html>";
-  } else { 
+  } else {
     $row = pg_fetch_row($result);
     // use as session cookie the base64 of the username
     setcookie('LOGIN', base64_encode($user), time() + $validity_time);

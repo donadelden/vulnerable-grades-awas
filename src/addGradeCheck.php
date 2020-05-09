@@ -3,12 +3,16 @@
 	$date = $_POST['date'];
 	$subject = $_POST['subject'];
 	$grade = $_POST['grade'];
-	$passed = $_POST['passed'];
 
 	if ((!$user) || (!$subject) || (!$grade)) {
 	  echo "<script type='text/javascript'>alert('Some fields are missing');</script>";
 	  include "addGrade.php";
 	} else {
+		// italian grades: passed if greater than 17
+		if ($grade > 17)
+			$passed = "true";
+		else
+			$passed = "false";
 		$conn = pg_connect("host=docker-db dbname=db-grades user=admin password=awas2020");
 		// date is optional, default is current date
 		if ($date) {
@@ -19,7 +23,7 @@
 			$result = pg_query_params($conn, $query, array($user, $subject, $grade, $passed));
 		}
 		$error = pg_result_error($result);
-		echo "<p>Grade added successully!</p>";
+		echo "<p align=\"center\">Grade added successully!</p>";
 		include "addGrade.php";
 	}
 ?>
