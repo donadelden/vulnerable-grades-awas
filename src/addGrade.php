@@ -1,4 +1,5 @@
 <title>Vulnerable grades</title>
+<div align="center">
 <form action="addGradeCheck.php" method="POST" id="formAddGrade">
 	<label>Exam date (optional)</label><br/>
 	<input name="date" type="date" id="date" /><br/>
@@ -13,3 +14,4 @@
 	<input type="submit" name="Add" value="Add grade" /> 
 </form>
 <a href="admin.php"> Go back </a>
+</div>
