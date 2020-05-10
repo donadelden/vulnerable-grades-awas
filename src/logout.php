@@ -1,6 +1,6 @@
 <?php
-  // expire login cookies
-  setcookie('LOGIN', "", time()-1);
+  setcookie('LOGIN', "", time() - 1); // expire login cookies
+  echo "<title>Vulnerable grades</title>";
   echo "<p align=\"center\"> Goodbye!</p>";
-  include "index.php";
+  echo "<p align=\"center\"> <a href=\"index.php\"> Login </a></p>";
 ?>

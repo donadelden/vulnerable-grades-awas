@@ -1,29 +1,32 @@
 <?php
-  require_once("sessionManagement.php");
-	// if the variable is already setted we have a first login
-	if (!isset($user))
-		$user = checkLogin();
-	// check if the user is already logged in
-	if($user!=false){
+	require_once("sessionManagement.php");
+	echo "<title>Vulnerable grades</title>";
+	// validate username
+	$user = checkLoginBase64();
+	if ($user != false){
 		$conn = pg_connect("host=docker-db dbname=db-grades user=admin password=awas2020" );
 		echo"<p align=\"center\">Welcome, $user!</p>";
 		echo"<p align=\"center\">This is the USER page!</p>";
+		// get grades
 		$query = "SELECT * FROM grades WHERE username ='$user';";
 		$result = pg_query($conn, $query);
 		$error = pg_result_error($result);
 		if (pg_num_rows($result) > 0) {
-			echo "<table border=\"1px solid\" align=\"center\"><tr><th>Date</th><th>Subject</th><th>Grade</th></tr>";
-			while ($grade_row = pg_fetch_assoc($result)) {
-				echo "<tr><td>".$grade_row["exam_date"]."</td><td>".$grade_row["subject"]."</td><td>".$grade_row["grade"]."</td></tr>";
+			echo "<table border=\"1px solid\" align=\"center\"><tr><th>Date</th><th>Subject</th><th>Grade</th><th>Passed</th></tr>";
+			while ($grade_row = pg_fetch_row($result)) {
+				if ($grade_row[4] == t)
+					$passed = "YES";
+				else
+					$passed = "NO";
+				echo "<tr><td>".$grade_row[0]."</td><td>".$grade_row[2]."</td><td>".$grade_row[3]."</td><td>".$passed."</td></tr>";
 			}
 		} else {
 			echo"<p align=\"center\">You don't have any grades to show.</p>";
 		}
-		echo "<a align=\"center\" href=\"logout.php\">Logout</a>";
+		echo "<p align=\"center\"><a href=\"logout.php\">Logout</a></p>";
 		pg_close($conn);
-	} else { // if the user is NOT logged in
+	} else {
 		echo"<p align=\"center\">Your session is expired. Please login again.</p>";
-		include "index.php";
+		echo "<p align=\"center\"> <a href=\"index.php\"> Login </a></p>";
 	}
-
 ?>
