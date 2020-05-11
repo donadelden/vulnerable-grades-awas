@@ -24,7 +24,7 @@
 					$passed = "YES";
 				else
 					$passed = "NO";
-				echo "<tr><td>".$grade_row["exam_date"]."</td><td>".$grade_row["name"]."</td><td>".$grade_row["surname"]."</td><td>".$grade_row["usr"]."</td><td>".$grade_row["subject"]."</td><td>".$grade_row["grade"]."</td><td>".$passed."</td><td><a href=\"delete.php?username=".$grade_row["usr"]."&date=".$grade_row["exam_date"]."\" onclick=\"return confirm('Are you sure you want to delete this?')\">delete</a> </td></tr>";
+				echo "<tr><td>".$grade_row["exam_date"]."</td><td>".$grade_row["name"]."</td><td>".$grade_row["surname"]."</td><td>".$grade_row["usr"]."</td><td>".$grade_row["subject"]."</td><td>".$grade_row["grade"]."</td><td>".$passed."</td><td><a href=\"delete.php?username=".$grade_row["usr"]."&date=".$grade_row["exam_date"]."&subject=".$grade_row["subject"]."\" onclick=\"return confirm('Are you sure you want to delete this?')\">delete</a> </td></tr>";
 			}
 		} else {
 			echo"<p align=\"center\">No entries available.</p>";
